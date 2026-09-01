@@ -264,6 +264,9 @@
                 <button data-cat="ebook" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
                     <i class="fa-solid fa-book-open mr-1.5 text-fuchsia-500"></i>電子書與圖書館
                 </button>
+                <button data-cat="account" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-user-shield mr-1.5 text-indigo-500"></i>教育帳號申請
+                </button>
                 <button data-cat="fav" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
                     <i class="fa-solid fa-heart mr-1.5 text-rose-500"></i>❤️ 我的收藏
                 </button>
@@ -395,6 +398,7 @@
                         <option value="gamified">遊戲化與互動討論</option>
                         <option value="coding">廣達Qblock/資訊程式</option>
                         <option value="ebook">電子書與圖書館</option>
+                        <option value="account">教育帳號申請</option>
                     </select>
                 </div>
                 <div>
@@ -490,6 +494,32 @@
                 desc: '教育部整合全台數位教育資源的入口門戶，提供教育雲端帳號 OpenID 登入、教育大市集與各類跨平台數位學習工具。',
                 officialBadge: '教育部官方',
                 target: '全國師生 / 跨領域教育資源'
+            },
+            {
+                id: 'chc_sso',
+                name: '彰化縣教育雲端帳號認證服務',
+                category: 'account',
+                url: 'https://chc.sso.edu.tw/home',
+                icon: 'fa-shield-halved',
+                gradient: 'from-indigo-500 to-blue-600',
+                bgLight: 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300',
+                tags: ['彰化縣', 'SSO單一簽入', '教育雲', '帳號認證'],
+                desc: '彰化縣師生專屬之教育雲端單一簽入 (SSO) 認證門戶，整合縣內教學系統、電子信箱與教育雲帳號快捷登入服務。',
+                officialBadge: '彰化縣教育處',
+                target: '彰化縣師生 / 單一簽入認證'
+            },
+            {
+                id: 'chc_eip',
+                name: '彰化縣 EIP 教育入口網',
+                category: 'account',
+                url: 'https://eip.chc.edu.tw/',
+                icon: 'fa-id-card',
+                gradient: 'from-blue-600 to-indigo-700',
+                bgLight: 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300',
+                tags: ['彰化縣', 'EIP系統', '帳號申請', '教育門戶'],
+                desc: '彰化縣教育網路中心 EIP 教育入口網服務，提供教職員與學生線上教育帳號申請、系統權限維護與各項校務資訊登入入口。',
+                officialBadge: '彰化縣教育處',
+                target: '彰化縣教職員生 / 教育帳號申請與登入'
             },
             {
                 id: 'tcread',
@@ -860,7 +890,8 @@
                 'english': '英語聽說讀寫',
                 'gamified': '遊戲化互動',
                 'coding': '廣達Qblock/程式',
-                'ebook': '電子書'
+                'ebook': '電子書',
+                'account': '教育帳號申請'
             };
             return map[catKey] || '自主學習';
         }
@@ -942,6 +973,7 @@
                 'gamified': '遊戲化與互動討論',
                 'coding': '廣達Qblock/資訊程式',
                 'ebook': '電子書與圖書館',
+                'account': '教育帳號申請',
                 'fav': '❤️ 我的收藏'
             };
             document.getElementById('statCategoryLabel').textContent = categoryLabels[currentCategory] || '全部資源';
