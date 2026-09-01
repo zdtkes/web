@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國小常用數位學習平台導航寶庫</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(14, 165, 233, 0.15)',
+                        'glow-lg': '0 10px 30px -10px rgba(99, 102, 241, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.25rem;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .dark .gradient-border::after {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Sleek smooth horizontal scroll for tabs */
+        .tab-scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+        }
+        .tab-scroll-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .tab-scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.4);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Top Glow Deco -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-sky-400/20 via-indigo-500/15 to-purple-500/10 blur-3xl pointer-events-none -z-10 rounded-full"></div>
+
+    <!-- Sticky Top Navigation -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/30 ring-2 ring-white/40 dark:ring-slate-700">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-black bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-sky-400 dark:via-indigo-300 dark:to-purple-400 leading-tight tracking-tight">
+                        國小數位學習寶庫
+                    </h1>
+                    <p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 hidden sm:block">精選教育機構與高品質自主學習資源入口</p>
+                </div>
+            </div>
+
+            <!-- Central Search Bar -->
+            <div class="flex-1 max-w-md relative hidden md:block">
+                <div class="relative group">
+                    <input type="text" id="searchInput" placeholder="搜尋平台名稱、關鍵字或標籤 (按 / 鍵)..." 
+                        class="w-full pl-10 pr-10 py-2 text-sm rounded-full bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white dark:focus:bg-slate-800 shadow-inner transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-slate-400 group-focus-within:text-sky-500 transition-colors"></i>
+                    <button id="clearSearch" class="hidden absolute right-3 top-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-2">
+                <button id="addCustomBtn" title="新增自訂平台" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 rounded-xl transition-all flex items-center gap-1.5 text-sm font-semibold">
+                    <i class="fa-solid fa-plus text-sky-500"></i>
+                    <span class="hidden sm:inline">新增連結</span>
+                </button>
+                <button id="themeToggle" title="切換深色/淺色模式" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 rounded-xl transition-all">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline text-amber-400"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="px-4 pb-3 md:hidden">
+            <div class="relative">
+                <input type="text" id="mobileSearchInput" placeholder="搜尋學習平台..." 
+                    class="w-full pl-10 pr-8 py-2 text-sm rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-slate-400"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-sky-500/10 to-indigo-500/10 dark:from-sky-400/20 dark:to-indigo-400/20 text-sky-700 dark:text-sky-300 border border-sky-200/80 dark:border-sky-800/80 shadow-sm mb-4">
+                <i class="fa-solid fa-sparkles text-amber-500"></i> 全台國小師生與家長必備指引
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                優質國小數位學習資源完整收錄
+            </h2>
+            <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-normal">
+                精選教育部因材網、均一、學習吧、廣達 Qblock、Cool English、識字金銀島等官方認證線上平台，點擊即刻開始自主探索！
+            </p>
+
+            <!-- Quick Stats Pills -->
+            <div class="mt-6 flex flex-wrap justify-center items-center gap-3 text-xs sm:text-sm font-medium">
+                <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 shadow-sm px-4 py-1.5 rounded-full flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+                    <span>收錄平台：<strong id="statTotalCount" class="text-emerald-600 dark:text-emerald-400 font-bold">0</strong> 個</span>
+                </div>
+                <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 shadow-sm px-4 py-1.5 rounded-full flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50"></span>
+                    <span>我的收藏：<strong id="statFavCount" class="text-rose-600 dark:text-rose-400 font-bold">0</strong> 個</span>
+                </div>
+                <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200/80 dark:border-slate-700/80 shadow-sm px-4 py-1.5 rounded-full flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shadow-sm shadow-sky-500/50"></span>
+                    <span>目前分類：<strong id="statCategoryLabel" class="text-sky-600 dark:text-sky-400 font-bold">全部資源</strong></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <!-- Prominent School Website Featured Card -->
+        <div class="mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-700 text-white shadow-xl shadow-emerald-500/10 relative overflow-hidden group">
+            <div class="absolute -right-10 -bottom-10 opacity-15 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+                <i class="fa-solid fa-school text-9xl"></i>
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-3xl shadow-inner ring-2 ring-white/30 flex-shrink-0">
+                        <i class="fa-solid fa-school text-amber-300"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-400 text-slate-900 shadow-sm flex items-center gap-1">
+                                <i class="fa-solid fa-star text-[10px]"></i> 學校專屬入口
+                            </span>
+                            <span class="text-xs text-emerald-100 font-medium">彰化縣竹塘鄉</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-2">
+                            彰化縣土庫國民小學 官方網站
+                        </h3>
+                        <p class="text-xs sm:text-sm text-emerald-100 mt-1 max-w-xl font-normal leading-relaxed">
+                            即時掌握最新校園公告、行事曆、班級網頁、榮譽榜與各項數位學習資訊服務。
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5 w-full md:w-auto self-end md:self-center">
+                    <button onclick="openDetailModal('tkes_chc')" class="px-4 py-2.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 flex-1 md:flex-initial">
+                        <i class="fa-solid fa-circle-info"></i> 詳細資訊
+                    </button>
+                    <a href="https://www.tkes.chc.edu.tw/" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-white text-emerald-800 hover:bg-amber-300 hover:text-slate-900 text-xs sm:text-sm font-extrabold shadow-lg transition flex items-center justify-center gap-2 flex-1 md:flex-initial">
+                        前往學校官網 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Filter Tabs Container with Navigation & Auto Wrap -->
+        <div class="relative mb-2">
+            <div class="flex items-center gap-2 overflow-x-auto md:flex-wrap pb-3 pt-1 px-1 tab-scroll-container border-b border-slate-200 dark:border-slate-800 scroll-smooth" id="categoryTabs">
+                <button data-cat="all" class="cat-btn active px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-sky-600 text-white shadow-md shadow-sky-500/30 flex-shrink-0">
+                    <i class="fa-solid fa-shapes mr-1.5"></i>全部資源
+                </button>
+                <button data-cat="core" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-brain mr-1.5 text-blue-500"></i>綜合與學科學習
+                </button>
+                <button data-cat="chinese" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-book-bookmark mr-1.5 text-rose-500"></i>國語文與閱讀認證
+                </button>
+                <button data-cat="english" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-language mr-1.5 text-emerald-500"></i>英語聽說讀寫
+                </button>
+                <button data-cat="gamified" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-gamepad mr-1.5 text-purple-500"></i>遊戲化與互動討論
+                </button>
+                <button data-cat="coding" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-code mr-1.5 text-amber-500"></i>廣達Qblock/資訊程式
+                </button>
+                <button data-cat="ebook" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-book-open mr-1.5 text-fuchsia-500"></i>電子書與圖書館
+                </button>
+                <button data-cat="fav" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-heart mr-1.5 text-rose-500"></i>❤️ 我的收藏
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter & View Toolbar -->
+        <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="text-sm text-slate-500 dark:text-slate-400">
+                顯示 <span id="displayedCount" class="font-extrabold text-slate-900 dark:text-slate-100">0</span> 個學習平台
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <div class="text-xs text-slate-400 font-medium hidden lg:block">熱門關鍵字：</div>
+                <div class="flex flex-wrap gap-1.5">
+                    <button class="tag-pill px-2.5 py-1 rounded-lg text-xs bg-slate-200/70 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-950 hover:text-sky-600 font-medium transition" data-tag="教育部">#教育部</button>
+                    <button class="tag-pill px-2.5 py-1 rounded-lg text-xs bg-slate-200/70 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-950 hover:text-sky-600 font-medium transition" data-tag="閱讀認證">#閱讀認證</button>
+                    <button class="tag-pill px-2.5 py-1 rounded-lg text-xs bg-slate-200/70 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-950 hover:text-sky-600 font-medium transition" data-tag="廣達">#廣達Qblock</button>
+                    <button class="tag-pill px-2.5 py-1 rounded-lg text-xs bg-slate-200/70 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-950 hover:text-sky-600 font-medium transition" data-tag="遊戲化">#遊戲化</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Cards Grid -->
+        <div id="cardsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+
+        <!-- Empty Search Result State -->
+        <div id="emptyState" class="hidden py-16 text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl mb-4 shadow-inner">
+                <i class="fa-solid fa-magnifying-glass-slash"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">找不到符合條件的學習平台</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">請嘗試變更關鍵字搜尋，或切換至其他類別。</p>
+            <button id="resetFilterBtn" class="mt-4 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold rounded-xl shadow-lg shadow-sky-500/20 transition">
+                重置搜尋過濾
+            </button>
+        </div>
+    </main>
+
+    <!-- Platform Detail Modal -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all border border-slate-200 dark:border-slate-700">
+            <!-- Modal Header -->
+            <div id="modalHeader" class="p-6 bg-gradient-to-r from-sky-500 to-indigo-600 text-white relative">
+                <button id="closeModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <div id="modalIconBg" class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl shadow-inner">
+                        <i id="modalIcon" class="fa-solid fa-globe"></i>
+                    </div>
+                    <div>
+                        <span id="modalCategoryBadge" class="inline-block px-2.5 py-0.5 rounded-md text-xs font-bold bg-white/20 text-white mb-1 backdrop-blur-sm">
+                            分類
+                        </span>
+                        <h3 id="modalTitle" class="text-xl font-black tracking-tight">平台名稱</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">平台簡介與特色</h4>
+                    <p id="modalDesc" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+                        詳細說明內容...
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-0.5 font-medium"><i class="fa-solid fa-bullseye text-sky-500 mr-1"></i>核心導向 / 適用</span>
+                        <span id="modalTarget" class="text-xs font-bold text-slate-700 dark:text-slate-200">適合對象</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-0.5 font-medium"><i class="fa-solid fa-award text-amber-500 mr-1"></i>主管/推廣單位</span>
+                        <span id="modalOfficial" class="text-xs font-bold text-slate-700 dark:text-slate-200">教育部</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">主題標籤</h4>
+                    <div id="modalTags" class="flex flex-wrap gap-1.5">
+                        <!-- Dynamic Tags -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/80 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
+                <button id="modalFavBtn" class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-semibold flex items-center gap-1.5 transition">
+                    <i class="fa-regular fa-heart text-rose-500" id="modalFavIcon"></i> 收藏
+                </button>
+                <a id="modalLaunchBtn" href="#" target="_blank" rel="noopener" class="flex-1 text-center px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-500/20 transition flex items-center justify-center gap-2">
+                    前往平台網站 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Custom Platform Modal -->
+    <div id="addModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-link text-sky-500"></i> 新增自訂學習網站
+                </h3>
+                <button id="closeAddModal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="addPlatformForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">平台名稱 *</label>
+                    <input type="text" id="customName" required placeholder="例如：校園酷課雲" class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">網址 (URL) *</label>
+                    <input type="url" id="customUrl" required placeholder="https://..." class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">所屬分類</label>
+                    <select id="customCategory" class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
+                        <option value="core">綜合與學科學習</option>
+                        <option value="chinese">國語文與閱讀認證</option>
+                        <option value="english">英語聽說讀寫</option>
+                        <option value="gamified">遊戲化與互動討論</option>
+                        <option value="coding">廣達Qblock/資訊程式</option>
+                        <option value="ebook">電子書與圖書館</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">簡短介紹</label>
+                    <textarea id="customDesc" rows="2" placeholder="簡述這個平台的主要特色..." class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" id="cancelAddBtn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">取消</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-500/20">加入平台</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900/90 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMsg" class="text-sm font-medium">通知訊息</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-white/60 dark:bg-slate-950/60 backdrop-blur border-t border-slate-200/80 dark:border-slate-800/80 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-1.5 font-medium">🎒 國民小學數位自主學習導航寶庫 • 陪伴孩子快樂成長學習</p>
+            <p class="text-slate-400 dark:text-slate-600 text-[11px]">所有網站著作權均歸原官方主管機構或開發單位所有。本入口網頁僅提供教育推廣導航目的。</p>
+        </div>
+    </footer>
+
+    <script>
+        // Verified Elementary School Platform Dataset
+        const defaultPlatforms = [
+            {
+                id: 'adl',
+                name: '教育部因材網',
+                category: 'core',
+                url: 'https://adl.edu.tw/',
+                icon: 'fa-brain',
+                gradient: 'from-blue-500 to-indigo-600',
+                bgLight: 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300',
+                tags: ['教育部', '適性診斷', '自主學習', '國數自社英'],
+                desc: '教育部官方建置之適性診斷學習平台，提供小學國語、數學、自然、社會及英語之微影片與題目，精準指出知識結構漏洞並輔導補救。',
+                officialBadge: '教育部官方',
+                target: '國小全學科 / 診斷式自主學習'
+            },
+            {
+                id: 'junyi',
+                name: '均一教育平台',
+                category: 'core',
+                url: 'https://www.junyiacademy.org/',
+                icon: 'fa-shapes',
+                gradient: 'from-emerald-500 to-teal-600',
+                bgLight: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300',
+                tags: ['免費優質', '數學自然', '獎章激勵', '分階練習'],
+                desc: '台灣最大免費線上自主學習平台之一，以小學數學、自然科學與程式設計為主，搭配豐富習題、生動教學影片與勳章激勵機制。',
+                officialBadge: '均一平台',
+                target: '數學 / 自然 / 基礎程式'
+            },
+            {
+                id: 'learnmode',
+                name: '學習吧 (LearnMode)',
+                category: 'core',
+                url: 'https://www.learnmode.net/',
+                icon: 'fa-book-open-reader',
+                gradient: 'from-sky-500 to-cyan-600',
+                bgLight: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300',
+                tags: ['AI語音', '教科書結合', '朗讀打分', '課後複習'],
+                desc: '緊密結合各大教科書版本，具備 AI 語音朗讀辨識技術，老師可發布課文預習、線上聽讀評分作業與單元複習測驗。',
+                officialBadge: '信望愛文教',
+                target: '國語 / 英語 / 各科課堂'
+            },
+            {
+                id: 'jiafenba',
+                name: '加分吧',
+                category: 'core',
+                url: 'https://premium.learnmode.net/',
+                icon: 'fa-star-half-stroke',
+                gradient: 'from-amber-500 to-orange-600',
+                bgLight: 'bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300',
+                tags: ['數位素養', '時事閱讀', '題庫加分', '跨領域'],
+                desc: '學習吧旗下的高品質數位學習延伸平台，提供跨領域時事素養文章、豐富加分題庫與趣味互動題型，培養閱讀理解與批判思考。',
+                officialBadge: '學習吧延伸',
+                target: '跨領域素養 / 課外閱讀'
+            },
+            {
+                id: 'cloud_edu',
+                name: '教育部教育雲',
+                category: 'core',
+                url: 'https://cloud.edu.tw/',
+                icon: 'fa-cloud-sun',
+                gradient: 'from-sky-500 to-blue-600',
+                bgLight: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300',
+                tags: ['教育部', '教育雲帳號', '跨平台資源', '數位學習'],
+                desc: '教育部整合全台數位教育資源的入口門戶，提供教育雲端帳號 OpenID 登入、教育大市集與各類跨平台數位學習工具。',
+                officialBadge: '教育部官方',
+                target: '全國師生 / 跨領域教育資源'
+            },
+            {
+                id: 'tcread',
+                name: '臺中市校園閱讀線上認證',
+                category: 'chinese',
+                url: 'https://read.tc.edu.tw/',
+                icon: 'fa-book-bookmark',
+                gradient: 'from-rose-500 to-pink-600',
+                bgLight: 'bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300',
+                tags: ['閱讀認證', '閱讀天眼通', '書籍闖關', '積分升級'],
+                desc: '全台國小廣為跨區採用的閱讀認證平台（俗稱閱讀天眼通），學生讀完圖書後進行線上答題闖關、累積經驗值與提升閱讀鳥等階。',
+                officialBadge: '臺中市教育局',
+                target: '課外圖書閱讀 / 認證測驗'
+            },
+            {
+                id: 'literacy',
+                name: '識字金銀島 / 識字量測驗',
+                category: 'chinese',
+                url: 'https://pair-nknu.k12ea.gov.tw/',
+                icon: 'fa-gem',
+                gradient: 'from-yellow-500 to-amber-600',
+                bgLight: 'bg-yellow-50 text-yellow-800 dark:bg-yellow-950/50 dark:text-yellow-300',
+                tags: ['識字量測驗', '部件學習', 'PAIR系統', '教育部推動'],
+                desc: '教育部推動、高師大與團隊研發之國小學童識字能力測驗與學習系統，協助檢測識字量、強化國字部件與詞彙理解能力。',
+                officialBadge: '教育部/高師大',
+                target: '國字部件 / 識字量能力評估'
+            },
+            {
+                id: 'hlcpinyin',
+                name: '花蓮縣字音字形學習網',
+                category: 'chinese',
+                url: 'https://word.hlc.edu.tw/',
+                icon: 'fa-pen-clip',
+                gradient: 'from-purple-500 to-violet-600',
+                bgLight: 'bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-300',
+                tags: ['字音字形', '競賽特訓', '限時測驗', '國語文'],
+                desc: '全台國語文競賽選手與國小生自主鍛鍊字音字形的優質網站，提供豐富之線上即時測驗、歷屆檢定題庫與字音矯正。',
+                officialBadge: '花蓮縣教育處',
+                target: '國字發音筆順 / 語文競賽'
+            },
+            {
+                id: 'coolenglish',
+                name: 'Cool English (酷英網)',
+                category: 'english',
+                url: 'https://www.coolenglish.edu.tw/',
+                icon: 'fa-language',
+                gradient: 'from-blue-600 to-cyan-500',
+                bgLight: 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300',
+                tags: ['教育部', '聽說讀寫', '繪本動畫', '遊戲學英語'],
+                desc: '教育部專為國中小學生打造的英語學習園地，包含聽力、口說 AI 語音分析、動畫繪本館、英檢練習與打字遊戲專區。',
+                officialBadge: '教育部官方',
+                target: '全方位英語聽說讀寫'
+            },
+            {
+                id: 'pagamo',
+                name: 'PaGamO 電競學習平台',
+                category: 'gamified',
+                url: 'https://www.pagamo.org/',
+                icon: 'fa-gamepad',
+                gradient: 'from-indigo-500 to-purple-600',
+                bgLight: 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300',
+                tags: ['遊戲化', '答題佔地', '學科素養', '超高人氣'],
+                desc: '全球首創學科電競遊戲，學生透過回答國語、數學、自然、社會及英語題目拓展領地，將課業複習轉化為趣味競技對戰。',
+                officialBadge: '幫你優',
+                target: '全學科遊戲化複習'
+            },
+            {
+                id: 'padlet',
+                name: 'Padlet 互動討論牆',
+                category: 'gamified',
+                url: 'https://padlet.com/',
+                icon: 'fa-chalkboard-user',
+                gradient: 'from-pink-500 to-rose-600',
+                bgLight: 'bg-pink-50 text-pink-700 dark:bg-pink-950/50 dark:text-pink-300',
+                tags: ['線上白板', '作品展示', '課堂討論', '學生發想'],
+                desc: '極為直覺的數位協作討論牆，學生可輕鬆上傳閱讀心得、照片、錄音檔或心智圖，是國小課堂分組討論與成果展現的首選。',
+                officialBadge: '國際常用',
+                target: '課堂互動 / 作業發表'
+            },
+            {
+                id: 'qblock',
+                name: '廣達 Qblock 創客邏輯',
+                category: 'coding',
+                url: 'https://www.quanta-edu.org/',
+                icon: 'fa-cubes-stacked',
+                gradient: 'from-teal-500 to-emerald-600',
+                bgLight: 'bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-300',
+                tags: ['廣達Qblock', '創客積木', '運算思維', '科技素養'],
+                desc: '廣達文教基金會推動之「游於智」計畫積木程式教具，專為國小學童設計，結合幾何視覺積木與軟硬體整合，啟發邏輯思維與創新實作能力。',
+                officialBadge: '廣達文教基金會',
+                target: '廣達Qblock / 國小運算思維'
+            },
+            {
+                id: 'scratch',
+                name: 'Scratch 圖像化程式創作',
+                category: 'coding',
+                url: 'https://scratch.mit.edu/',
+                icon: 'fa-code',
+                gradient: 'from-orange-500 to-amber-500',
+                bgLight: 'bg-orange-50 text-orange-700 dark:bg-orange-950/50 dark:text-orange-300',
+                tags: ['積木程式', 'MIT開發', '動畫遊戲', '資訊課必學'],
+                desc: '麻省理工學院 (MIT) 專為兒童開發的積木式程式語言，不需背程式碼即可拖拉創作遊戲、動畫與音樂，鍛鍊邏輯思考。',
+                officialBadge: 'MIT官方',
+                target: '國小資訊課 / 程式啟蒙'
+            },
+            {
+                id: 'eduebook',
+                name: '教育雲電子書整合平台',
+                category: 'ebook',
+                url: 'https://oidcebook.nlpi.edu.tw/',
+                icon: 'fa-book-open',
+                gradient: 'from-fuchsia-500 to-purple-600',
+                bgLight: 'bg-fuchsia-50 text-fuchsia-700 dark:bg-fuchsia-950/50 dark:text-fuchsia-300',
+                tags: ['教育部', '免費繪本', '電子書庫', '線上閱讀'],
+                desc: '教育部整合全台數位圖書館資源，提供豐富之兒童中文繪本、科普叢書、優良讀物與雙語電子書，免費隨開即讀。',
+                officialBadge: '教育部官方',
+                target: '兒童繪本 / 數位閱覽'
+            },
+            {
+                id: 'fitness',
+                name: '教育部體適能網站',
+                category: 'core',
+                url: 'https://www.fitness.org.tw/',
+                icon: 'fa-heart-pulse',
+                gradient: 'from-emerald-500 to-green-600',
+                bgLight: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300',
+                tags: ['教育部', '體適能', '健康體育', '常模查詢'],
+                desc: '教育部建置之學生體適能官方網站，提供體適能測驗項目規範、護照查詢、體育健康指導與成績統計分析。',
+                officialBadge: '教育部官方',
+                target: '體適能測驗 / 健康體育推廣'
+            },
+            {
+                id: 'subsupport',
+                name: '學習扶助科技化評量',
+                category: 'core',
+                url: 'https://exam.tcte.edu.tw/tbt_html/',
+                icon: 'fa-hand-holding-hand',
+                gradient: 'from-teal-500 to-emerald-600',
+                bgLight: 'bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-300',
+                tags: ['教育部', '學習扶助', '科技化評量', '基本學力'],
+                desc: '教育部為協助國中小學生提升基本學力所建置之學習扶助科技化評量系統，提供國語、數學、英語之篩選與成長測驗題庫，幫助適性學習與補救輔導。',
+                officialBadge: '教育部/測驗中心',
+                target: '國中小學生 / 基本學力診斷與補救'
+            },
+            {
+                id: 'etutor_aidi',
+                name: '教育部數位學伴 (AIDI)',
+                category: 'core',
+                url: 'https://etutor.moe.gov.tw/aidicha/etms/',
+                icon: 'fa-hands-holding-child',
+                gradient: 'from-violet-500 to-purple-600',
+                bgLight: 'bg-violet-50 text-violet-700 dark:bg-violet-950/50 dark:text-violet-300',
+                tags: ['教育部', '數位學伴', 'AIDI', '線上陪伴'],
+                desc: '教育部數位學伴計畫與 AIDI 管理系統，透過大學生進行線上即時一對一陪伴與學業輔導，結合智慧科技關懷學童自主學習。',
+                officialBadge: '教育部官方',
+                target: '國中小學童 / 一對一線上陪伴學習'
+            },
+            {
+                id: 'tkes_chc',
+                name: '彰化縣土庫國小',
+                category: 'core',
+                url: 'https://www.tkes.chc.edu.tw/',
+                icon: 'fa-school',
+                gradient: 'from-emerald-500 to-teal-600',
+                bgLight: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300',
+                tags: ['校園網站', '土庫國小', '彰化縣', '竹塘鄉', '學校公告'],
+                desc: '彰化縣竹塘鄉土庫國民小學官方網站，提供校園最新動態、行政公告、班級網頁與教學資源連結。',
+                officialBadge: '校園官網',
+                target: '土庫國小師生與家長'
+            },
+            {
+                id: 'knsh_ebook',
+                name: '康軒網頁版電子書',
+                category: 'ebook',
+                url: 'https://webetextbook.knsh.com.tw/',
+                icon: 'fa-book-atlas',
+                gradient: 'from-orange-500 to-red-500',
+                bgLight: 'bg-orange-50 text-orange-700 dark:bg-orange-950/50 dark:text-orange-300',
+                tags: ['康軒教材', '線上課本', '電子書', '課堂預習'],
+                desc: '康軒文教事業官方網頁版電子書，包含國小國語、數學、自然、社會等科目線上課本與補充資源，隨開即看免安裝。',
+                officialBadge: '康軒文教',
+                target: '國小教科書 / 自主預習與複習'
+            },
+            {
+                id: 'nani_ebook',
+                name: '南一 OneClass 電子書',
+                category: 'ebook',
+                url: 'https://reader.oneclass.com.tw/',
+                icon: 'fa-book-journal-whills',
+                gradient: 'from-emerald-500 to-teal-600',
+                bgLight: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300',
+                tags: ['南一教材', 'OneClass', '線上課本', '數位教材'],
+                desc: '南一書局 OneClass 網頁版線上電子書，提供國小各年級全學科課本、習作與互動教材，方便師生教學與個人自主學習。',
+                officialBadge: '南一書局',
+                target: '國小教科書 / 線上互動課本'
+            },
+            {
+                id: 'hanlin_ebook',
+                name: '翰林行動大師電子書',
+                category: 'ebook',
+                url: 'https://edisc3.hle.com.tw/',
+                icon: 'fa-book-bookmark',
+                gradient: 'from-blue-600 to-indigo-600',
+                bgLight: 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300',
+                tags: ['翰林教材', '行動大師', '線上課本', '數位教材'],
+                desc: '翰林出版行動大師網頁版電子書，提供國小各科課本、習作與教學媒體，免安裝即可線上瀏覽與課前自主預習。',
+                officialBadge: '翰林出版',
+                target: '國小教科書 / 自主預習與複習'
+            }
+        ];
+
+        // App State
+        let platformsData = [];
+        let favorites = new Set();
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let currentActiveModalPlatform = null;
+
+        // Initialize App
+        function initApp() {
+            // Load Platforms & merge missing defaults
+            const storedPlatforms = localStorage.getItem('custom_platforms_v2');
+            if (storedPlatforms) {
+                try {
+                    platformsData = JSON.parse(storedPlatforms);
+                    // Sync missing default items into stored data
+                    defaultPlatforms.forEach(def => {
+                        if (!platformsData.some(p => p.id === def.id)) {
+                            platformsData.push(def);
+                        }
+                    });
+                } catch (e) {
+                    platformsData = [...defaultPlatforms];
+                }
+            } else {
+                platformsData = [...defaultPlatforms];
+            }
+
+            // Load Favorites
+            const storedFavs = localStorage.getItem('fav_platforms_v2');
+            if (storedFavs) {
+                try {
+                    favorites = new Set(JSON.parse(storedFavs));
+                } catch (e) {
+                    favorites = new Set();
+                }
+            }
+
+            // Load Dark Mode Preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            setupEventListeners();
+            renderCards();
+            updateStats();
+        }
+
+        // Save Platforms to LocalStorage
+        function savePlatforms() {
+            localStorage.setItem('custom_platforms_v2', JSON.stringify(platformsData));
+        }
+
+        // Save Favorites to LocalStorage
+        function saveFavorites() {
+            localStorage.setItem('fav_platforms_v2', JSON.stringify([...favorites]));
+        }
+
+        // Filter platforms
+        function getFilteredPlatforms() {
+            return platformsData.filter(item => {
+                // 移除重複的學校官網卡片（已置頂於上方專屬入口）
+                if (item.id === 'tkes_chc') return false;
+
+                // Category Filter
+                let matchesCategory = false;
+                if (currentCategory === 'all') matchesCategory = true;
+                else if (currentCategory === 'fav') matchesCategory = favorites.has(item.id);
+                else matchesCategory = item.category === currentCategory;
+
+                // Search Query Filter
+                let matchesSearch = true;
+                if (searchQuery.trim() !== '') {
+                    const q = searchQuery.toLowerCase().trim();
+                    const nameMatch = item.name.toLowerCase().includes(q);
+                    const descMatch = item.desc.toLowerCase().includes(q);
+                    const tagMatch = item.tags.some(tag => tag.toLowerCase().includes(q));
+                    const targetMatch = item.target ? item.target.toLowerCase().includes(q) : false;
+                    matchesSearch = nameMatch || descMatch || tagMatch || targetMatch;
+                }
+
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        // Render Cards UI
+        function renderCards() {
+            const grid = document.getElementById('cardsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const filtered = getFilteredPlatforms();
+
+            document.getElementById('displayedCount').textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => {
+                const isFav = favorites.has(item.id);
+                return `
+                    <div class="card-hover bg-white/90 dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-glow-lg dark:hover:shadow-slate-900/60 flex flex-col justify-between relative group backdrop-blur-sm gradient-border">
+                        <div>
+                            <!-- Top Row: Icon & Category Badge -->
+                            <div class="flex items-start justify-between gap-3 mb-3.5">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${item.gradient} text-white flex items-center justify-center text-xl shadow-md shadow-sky-500/20 ring-2 ring-white/50 dark:ring-slate-700">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-[11px] px-2.5 py-1 rounded-full font-semibold tracking-wide ${item.bgLight}">
+                                        ${getCategoryLabel(item.category)}
+                                    </span>
+                                    <button onclick="toggleFav('${item.id}', event)" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700/80 flex items-center justify-center transition text-slate-400 hover:text-rose-500">
+                                        <i class="${isFav ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Title & Subtitle -->
+                            <h3 class="font-extrabold text-base text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
+                                ${item.name}
+                                ${item.officialBadge ? `<span class="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300 font-medium border border-slate-200/60 dark:border-slate-600/60">${item.officialBadge}</span>` : ''}
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed font-normal">
+                                ${item.desc}
+                            </p>
+                        </div>
+
+                        <!-- Bottom Section: Tags & Action Buttons -->
+                        <div class="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-700/60">
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                ${item.tags.slice(0, 3).map(tag => `<span class="text-[11px] font-medium text-slate-400 dark:text-slate-500">#${tag}</span>`).join(' ')}
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button onclick="openDetailModal('${item.id}')" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100/90 dark:bg-slate-700/70 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex-1">
+                                    <i class="fa-solid fa-circle-info mr-1 text-slate-400"></i> 詳細介紹
+                                </button>
+                                <a href="${item.url}" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white shadow-md shadow-sky-500/20 transition flex items-center justify-center gap-1">
+                                    前往 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get readable category name
+        function getCategoryLabel(catKey) {
+            const map = {
+                'core': '綜合/學科',
+                'chinese': '國語/閱讀',
+                'english': '英語聽說讀寫',
+                'gamified': '遊戲化互動',
+                'coding': '廣達Qblock/程式',
+                'ebook': '電子書'
+            };
+            return map[catKey] || '自主學習';
+        }
+
+        // Toggle Favorite
+        window.toggleFav = function(id, event) {
+            if (event) event.stopPropagation();
+            if (favorites.has(id)) {
+                favorites.delete(id);
+                showToast('已從收藏中移除', 'info');
+            } else {
+                favorites.add(id);
+                showToast('已加入我的收藏！', 'success');
+            }
+            saveFavorites();
+            renderCards();
+            updateStats();
+
+            if (currentActiveModalPlatform && currentActiveModalPlatform.id === id) {
+                updateModalFavState();
+            }
+        };
+
+        // Open Detail Modal
+        window.openDetailModal = function(id) {
+            const platform = platformsData.find(p => p.id === id);
+            if (!platform) return;
+
+            currentActiveModalPlatform = platform;
+            document.getElementById('modalTitle').textContent = platform.name;
+            document.getElementById('modalDesc').textContent = platform.desc;
+            document.getElementById('modalTarget').textContent = platform.target || '國小學生 / 師生';
+            document.getElementById('modalOfficial').textContent = platform.officialBadge || '數位學習資源';
+            document.getElementById('modalCategoryBadge').textContent = getCategoryLabel(platform.category);
+            document.getElementById('modalLaunchBtn').href = platform.url;
+
+            document.getElementById('modalIcon').className = `fa-solid ${platform.icon}`;
+            document.getElementById('modalHeader').className = `p-6 bg-gradient-to-r ${platform.gradient} text-white relative`;
+
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = platform.tags.map(t => `<span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">#${t}</span>`).join('');
+
+            updateModalFavState();
+            document.getElementById('detailModal').classList.remove('hidden');
+        };
+
+        function updateModalFavState() {
+            if (!currentActiveModalPlatform) return;
+            const isFav = favorites.has(currentActiveModalPlatform.id);
+            const favIcon = document.getElementById('modalFavIcon');
+            const favBtn = document.getElementById('modalFavBtn');
+
+            if (isFav) {
+                favIcon.className = 'fa-solid fa-heart text-rose-500';
+                favBtn.classList.add('bg-rose-50', 'dark:bg-rose-950/40', 'border-rose-200');
+            } else {
+                favIcon.className = 'fa-regular fa-heart text-slate-400';
+                favBtn.classList.remove('bg-rose-50', 'dark:bg-rose-950/40', 'border-rose-200');
+            }
+        }
+
+        // Close Detail Modal
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+            currentActiveModalPlatform = null;
+        }
+
+        // Update Stat Badges
+        function updateStats() {
+            const learningPlatforms = platformsData.filter(p => p.id !== 'tkes_chc');
+            document.getElementById('statTotalCount').textContent = learningPlatforms.length;
+            document.getElementById('statFavCount').textContent = favorites.size;
+
+            const categoryLabels = {
+                'all': '全部資源',
+                'core': '綜合與學科學習',
+                'chinese': '國語文與閱讀認證',
+                'english': '英語聽說讀寫',
+                'gamified': '遊戲化與互動討論',
+                'coding': '廣達Qblock/資訊程式',
+                'ebook': '電子書與圖書館',
+                'fav': '❤️ 我的收藏'
+            };
+            document.getElementById('statCategoryLabel').textContent = categoryLabels[currentCategory] || '全部資源';
+        }
+
+        // Show Toast Feedback
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-lg';
+            } else if (type === 'info') {
+                toastIcon.className = 'fa-solid fa-circle-info text-sky-400 text-lg';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // Event Listeners Setup
+        function setupEventListeners() {
+            document.getElementById('categoryTabs').addEventListener('click', (e) => {
+                const btn = e.target.closest('.cat-btn');
+                if (!btn) return;
+
+                document.querySelectorAll('.cat-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-sky-600', 'text-white', 'shadow-md');
+                    b.classList.add('text-slate-600', 'dark:text-slate-300');
+                });
+
+                btn.classList.add('active', 'bg-sky-600', 'text-white', 'shadow-md');
+                btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+                currentCategory = btn.dataset.cat;
+                renderCards();
+                updateStats();
+            });
+
+            const searchInput = document.getElementById('searchInput');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const clearSearchBtn = document.getElementById('clearSearch');
+
+            function handleSearchInput(e) {
+                searchQuery = e.target.value;
+                if (searchInput) searchInput.value = searchQuery;
+                if (mobileSearchInput) mobileSearchInput.value = searchQuery;
+
+                if (searchQuery.length > 0) {
+                    clearSearchBtn.classList.remove('hidden');
+                } else {
+                    clearSearchBtn.classList.add('hidden');
+                }
+                renderCards();
+            }
+
+            searchInput.addEventListener('input', handleSearchInput);
+            mobileSearchInput.addEventListener('input', handleSearchInput);
+
+            clearSearchBtn.addEventListener('click', () => {
+                searchQuery = '';
+                searchInput.value = '';
+                mobileSearchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+                renderCards();
+            });
+
+            document.querySelectorAll('.tag-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    const tag = pill.dataset.tag;
+                    searchQuery = tag;
+                    searchInput.value = tag;
+                    mobileSearchInput.value = tag;
+                    clearSearchBtn.classList.remove('hidden');
+                    renderCards();
+                });
+            });
+
+            document.getElementById('resetFilterBtn').addEventListener('click', () => {
+                searchQuery = '';
+                currentCategory = 'all';
+                searchInput.value = '';
+                mobileSearchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+
+                document.querySelectorAll('.cat-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-sky-600', 'text-white');
+                    if (b.dataset.cat === 'all') {
+                        b.classList.add('active', 'bg-sky-600', 'text-white');
+                    }
+                });
+
+                renderCards();
+                updateStats();
+            });
+
+            document.getElementById('closeModal').addEventListener('click', closeDetailModal);
+            document.getElementById('detailModal').addEventListener('click', (e) => {
+                if (e.target.id === 'detailModal') closeDetailModal();
+            });
+
+            document.getElementById('modalFavBtn').addEventListener('click', () => {
+                if (currentActiveModalPlatform) {
+                    toggleFav(currentActiveModalPlatform.id);
+                }
+            });
+
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            const addModal = document.getElementById('addModal');
+            document.getElementById('addCustomBtn').addEventListener('click', () => {
+                addModal.classList.remove('hidden');
+            });
+            document.getElementById('closeAddModal').addEventListener('click', () => {
+                addModal.classList.add('hidden');
+            });
+            document.getElementById('cancelAddBtn').addEventListener('click', () => {
+                addModal.classList.add('hidden');
+            });
+
+            document.getElementById('addPlatformForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('customName').value.trim();
+                const url = document.getElementById('customUrl').value.trim();
+                const category = document.getElementById('customCategory').value;
+                const desc = document.getElementById('customDesc').value.trim() || '使用者自訂學習網站資源。';
+
+                if (!name || !url) return;
+
+                const newPlatform = {
+                    id: 'custom_' + Date.now(),
+                    name: name,
+                    category: category,
+                    url: url,
+                    icon: 'fa-globe',
+                    gradient: 'from-sky-500 to-indigo-600',
+                    bgLight: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300',
+                    tags: ['自訂連結', '常用資源'],
+                    desc: desc,
+                    officialBadge: '個人新增',
+                    target: '自主學習資源'
+                };
+
+                platformsData.unshift(newPlatform);
+                savePlatforms();
+                renderCards();
+                updateStats();
+
+                addModal.classList.add('hidden');
+                document.getElementById('addPlatformForm').reset();
+                showToast('已成功新增自訂連結！', 'success');
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== mobileSearchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                } else if (e.key === 'Escape') {
+                    closeDetailModal();
+                    addModal.classList.add('hidden');
+                }
+            });
+        }
+
+        window.onload = function() {
+            initApp();
+        };
+    </script>
+</body>
+</html>
