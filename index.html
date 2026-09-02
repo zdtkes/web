@@ -154,6 +154,10 @@
                     <i class="fa-solid fa-plus text-sky-500"></i>
                     <span class="hidden sm:inline">新增連結</span>
                 </button>
+                <button id="manageCategoriesBtn" title="編輯分類名稱" class="hidden p-2.5 text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 dark:hover:bg-amber-900/60 rounded-xl transition-all flex items-center gap-1.5 text-sm font-semibold border border-amber-200 dark:border-amber-800">
+                    <i class="fa-solid fa-tags text-amber-500"></i>
+                    <span class="hidden sm:inline">管理分類</span>
+                </button>
                 <button id="adminToggleBtn" title="管理者權限驗證" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 rounded-xl transition-all flex items-center gap-1.5 text-sm font-semibold">
                     <i id="adminLockIcon" class="fa-solid fa-lock text-amber-500"></i>
                     <span id="adminBtnText" class="hidden sm:inline">管理解鎖</span>
@@ -397,7 +401,7 @@
     <div id="addModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
         <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                <h3 id="addModalTitle" class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
                     <i class="fa-solid fa-link text-sky-500"></i> 新增自訂學習網站
                 </h3>
                 <button id="closeAddModal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
@@ -405,6 +409,7 @@
                 </button>
             </div>
             <form id="addPlatformForm" class="space-y-4">
+                <input type="hidden" id="editPlatformId" value="">
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">平台名稱 *</label>
                     <input type="text" id="customName" required placeholder="例如：校園酷課雲" class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
@@ -416,15 +421,12 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">所屬分類</label>
                     <select id="customCategory" class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
-                        <option value="core">綜合與學科學習</option>
-                        <option value="chinese">國語文與閱讀認證</option>
-                        <option value="english">英語聽說讀寫</option>
-                        <option value="gamified">遊戲化與互動討論</option>
-                        <option value="coding">廣達Qblock/資訊程式</option>
-                        <option value="ebook">電子書與圖書館</option>
-                        <option value="account">教育帳號申請</option>
-                        <option value="practice">學生練功區</option>
+                        <!-- Dynamically populated categories -->
                     </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">適用對象 / 導向</label>
+                    <input type="text" id="customTarget" placeholder="例如：國小全學科 / 國語文測驗" class="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-sky-500 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">簡短介紹</label>
@@ -432,9 +434,32 @@
                 </div>
                 <div class="pt-2 flex justify-end gap-2">
                     <button type="button" id="cancelAddBtn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">取消</button>
-                    <button type="submit" class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-500/20">加入平台</button>
+                    <button type="submit" id="savePlatformBtn" class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-500/20">加入平台</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Category Management Modal -->
+    <div id="categoryManagerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-tags text-amber-500"></i> 管理分類名稱
+                </h3>
+                <button id="closeCategoryModal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 my-3">修改分類顯示名稱，點擊「儲存修改」後全站頁面、選單與標籤將同步更新。</p>
+            <div id="categoryEditList" class="space-y-3 overflow-y-auto pr-1 flex-1 my-2">
+                <!-- Dynamically populated category rows -->
+            </div>
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-end gap-2">
+                <button id="resetCategoryNamesBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition mr-auto">恢復預設名稱</button>
+                <button id="closeCategoryModalBtn" type="button" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">取消</button>
+                <button id="saveCategoryNamesBtn" type="button" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold shadow-md shadow-amber-500/20">儲存修改</button>
+            </div>
         </div>
     </div>
 
@@ -855,8 +880,20 @@
             }
         ];
 
+        const defaultCategories = {
+            'core': { name: '綜合與學科學習', icon: 'fa-brain', color: 'text-blue-500' },
+            'chinese': { name: '國語文與閱讀認證', icon: 'fa-book-bookmark', color: 'text-rose-500' },
+            'english': { name: '英語聽說讀寫', icon: 'fa-language', color: 'text-emerald-500' },
+            'gamified': { name: '遊戲化與互動討論', icon: 'fa-gamepad', color: 'text-purple-500' },
+            'coding': { name: '廣達Qblock/資訊程式', icon: 'fa-code', color: 'text-amber-500' },
+            'ebook': { name: '電子書與圖書館', icon: 'fa-book-open', color: 'text-fuchsia-500' },
+            'account': { name: '教育帳號申請', icon: 'fa-user-shield', color: 'text-indigo-500' },
+            'practice': { name: '學生練功區', icon: 'fa-keyboard', color: 'text-emerald-500' }
+        };
+
         // App State
         let platformsData = [];
+        let categoriesConfig = {};
         let favorites = new Set();
         let currentCategory = 'all';
         let searchQuery = '';
@@ -867,6 +904,18 @@
 
         // Initialize App
         function initApp() {
+            // Load Categories Config
+            const storedCategories = localStorage.getItem('custom_categories_v1');
+            if (storedCategories) {
+                try {
+                    categoriesConfig = JSON.parse(storedCategories);
+                } catch (e) {
+                    categoriesConfig = JSON.parse(JSON.stringify(defaultCategories));
+                }
+            } else {
+                categoriesConfig = JSON.parse(JSON.stringify(defaultCategories));
+            }
+
             // Load Platforms
             const storedPlatforms = localStorage.getItem('custom_platforms_v2');
             if (storedPlatforms) {
@@ -897,8 +946,62 @@
             }
 
             setupEventListeners();
+            renderCategoryTabs();
+            populateCategoryDropdown();
             renderCards();
             updateStats();
+        }
+
+        function saveCategories() {
+            localStorage.setItem('custom_categories_v1', JSON.stringify(categoriesConfig));
+        }
+
+        function getCategoryLabel(catKey) {
+            if (categoriesConfig[catKey]) {
+                return categoriesConfig[catKey].name;
+            }
+            return '自主學習';
+        }
+
+        // Render dynamic category tabs
+        function renderCategoryTabs() {
+            const tabsContainer = document.getElementById('categoryTabs');
+            if (!tabsContainer) return;
+
+            let html = `
+                <button data-cat="all" class="cat-btn ${currentCategory === 'all' ? 'active bg-sky-600 text-white shadow-md shadow-sky-500/30' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800'} px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-shapes mr-1.5"></i>全部資源
+                </button>
+            `;
+
+            Object.keys(categoriesConfig).forEach(key => {
+                const cat = categoriesConfig[key];
+                const isActive = currentCategory === key;
+                html += `
+                    <button data-cat="${key}" class="cat-btn ${isActive ? 'active bg-sky-600 text-white shadow-md shadow-sky-500/30 font-bold' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 font-semibold'} px-3.5 py-2 rounded-2xl text-xs sm:text-sm whitespace-nowrap transition-all flex-shrink-0">
+                        <i class="fa-solid ${cat.icon} mr-1.5 ${isActive ? 'text-white' : cat.color}"></i>${cat.name}
+                    </button>
+                `;
+            });
+
+            const isFavActive = currentCategory === 'fav';
+            html += `
+                <button data-cat="fav" class="cat-btn ${isFavActive ? 'active bg-sky-600 text-white shadow-md shadow-sky-500/30 font-bold' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 font-semibold'} px-3.5 py-2 rounded-2xl text-xs sm:text-sm whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-heart mr-1.5 text-rose-500"></i>❤️ 我的收藏
+                </button>
+            `;
+
+            tabsContainer.innerHTML = html;
+        }
+
+        // Populate Category Dropdown in Add/Edit form
+        function populateCategoryDropdown() {
+            const select = document.getElementById('customCategory');
+            if (!select) return;
+
+            select.innerHTML = Object.keys(categoriesConfig).map(key => {
+                return `<option value="${key}">${categoriesConfig[key].name}</option>`;
+            }).join('');
         }
 
         // Save Platforms to LocalStorage
@@ -958,18 +1061,23 @@
                 return `
                     <div class="card-hover bg-white/90 dark:bg-slate-800/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-glow-lg dark:hover:shadow-slate-900/60 flex flex-col justify-between relative group backdrop-blur-sm gradient-border">
                         <div>
-                            <!-- Top Row: Icon, Category Badge, Favorite & Delete -->
+                            <!-- Top Row: Icon, Category Badge, Favorite & Actions -->
                             <div class="flex items-start justify-between gap-2 mb-3.5">
-                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${item.gradient} text-white flex items-center justify-center text-xl shadow-md shadow-sky-500/20 ring-2 ring-white/50 dark:ring-slate-700 flex-shrink-0">
-                                    <i class="fa-solid ${item.icon}"></i>
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${item.gradient || 'from-sky-500 to-indigo-600'} text-white flex items-center justify-center text-xl shadow-md shadow-sky-500/20 ring-2 ring-white/50 dark:ring-slate-700 flex-shrink-0">
+                                    <i class="fa-solid ${item.icon || 'fa-globe'}"></i>
                                 </div>
                                 <div class="flex items-center gap-1">
-                                    <span class="text-[11px] px-2.5 py-1 rounded-full font-semibold tracking-wide ${item.bgLight}">
+                                    <span class="text-[11px] px-2.5 py-1 rounded-full font-semibold tracking-wide ${item.bgLight || 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300'}">
                                         ${getCategoryLabel(item.category)}
                                     </span>
                                     <button onclick="toggleFav('${item.id}', event)" title="加入/取消收藏" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700/80 flex items-center justify-center transition text-slate-400 hover:text-rose-500">
                                         <i class="${isFav ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart text-sm"></i>
                                     </button>
+                                    ${isAdmin ? `
+                                        <button onclick="openEditPlatformModal('${item.id}', event)" title="編輯此平台內容" class="w-8 h-8 rounded-full hover:bg-amber-100 dark:hover:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center transition">
+                                            <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                        </button>
+                                    ` : ''}
                                     <button onclick="requestDeletePlatform('${item.id}', event)" title="刪除此平台" class="w-8 h-8 rounded-full hover:bg-rose-100 dark:hover:bg-rose-950/60 flex items-center justify-center transition ${isAdmin ? 'text-rose-500' : 'text-slate-300 dark:text-slate-600 hover:text-rose-500'}">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
                                     </button>
@@ -1004,6 +1112,83 @@
                     </div>
                 `;
             }).join('');
+        }
+
+        // Open Edit Modal for existing platform
+        window.openEditPlatformModal = function(id, event) {
+            if (event) event.stopPropagation();
+            const platform = platformsData.find(p => p.id === id);
+            if (!platform) return;
+
+            document.getElementById('editPlatformId').value = platform.id;
+            document.getElementById('customName').value = platform.name;
+            document.getElementById('customUrl').value = platform.url;
+            document.getElementById('customCategory').value = platform.category;
+            document.getElementById('customTarget').value = platform.target || '';
+            document.getElementById('customDesc').value = platform.desc || '';
+
+            document.getElementById('addModalTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-amber-500"></i> 編輯平台資訊`;
+            document.getElementById('savePlatformBtn').textContent = '儲存變更';
+            document.getElementById('savePlatformBtn').className = 'px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold shadow-md shadow-amber-500/20';
+
+            document.getElementById('addModal').classList.remove('hidden');
+        };
+
+        // Open Category Manager Modal
+        function openCategoryManagerModal() {
+            const listContainer = document.getElementById('categoryEditList');
+            if (!listContainer) return;
+
+            listContainer.innerHTML = Object.keys(categoriesConfig).map(key => {
+                const cat = categoriesConfig[key];
+                return `
+                    <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-slate-200/60 dark:bg-slate-800 flex items-center justify-center text-sm ${cat.color} flex-shrink-0">
+                            <i class="fa-solid ${cat.icon}"></i>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-[11px] font-bold text-slate-400 mb-0.5">代碼：${key}</label>
+                            <input type="text" data-catkey="${key}" value="${cat.name}" class="cat-name-input w-full px-3 py-1.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-amber-500 outline-none font-semibold">
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('categoryManagerModal').classList.remove('hidden');
+        }
+
+        function closeCategoryManagerModal() {
+            document.getElementById('categoryManagerModal').classList.add('hidden');
+        }
+
+        function saveCategoryNames() {
+            const inputs = document.querySelectorAll('.cat-name-input');
+            inputs.forEach(input => {
+                const key = input.dataset.catkey;
+                const newName = input.value.trim();
+                if (key && newName && categoriesConfig[key]) {
+                    categoriesConfig[key].name = newName;
+                }
+            });
+
+            saveCategories();
+            renderCategoryTabs();
+            populateCategoryDropdown();
+            renderCards();
+            updateStats();
+            closeCategoryManagerModal();
+            showToast('已成功更新分類名稱！', 'success');
+        }
+
+        function resetCategoryNames() {
+            categoriesConfig = JSON.parse(JSON.stringify(defaultCategories));
+            saveCategories();
+            renderCategoryTabs();
+            populateCategoryDropdown();
+            renderCards();
+            updateStats();
+            closeCategoryManagerModal();
+            showToast('已恢復預設分類名稱！', 'info');
         }
 
         // Request Deletion of a platform
@@ -1065,45 +1250,15 @@
         // Restore all default platforms
         function restoreDefaultPlatforms() {
             platformsData = [...defaultPlatforms];
+            categoriesConfig = JSON.parse(JSON.stringify(defaultCategories));
             savePlatforms();
+            saveCategories();
+            renderCategoryTabs();
+            populateCategoryDropdown();
             renderCards();
             updateStats();
-            showToast('已恢復所有預設學習平台！', 'success');
+            showToast('已恢復所有預設學習平台與分類名稱！', 'success');
         }
-
-        // Get readable category name
-        function getCategoryLabel(catKey) {
-            const map = {
-                'core': '綜合/學科',
-                'chinese': '國語/閱讀',
-                'english': '英語聽說讀寫',
-                'gamified': '遊戲化互動',
-                'coding': '廣達Qblock/程式',
-                'ebook': '電子書',
-                'account': '教育帳號申請',
-                'practice': '學生練功區'
-            };
-            return map[catKey] || '自主學習';
-        }
-
-        // Toggle Favorite
-        window.toggleFav = function(id, event) {
-            if (event) event.stopPropagation();
-            if (favorites.has(id)) {
-                favorites.delete(id);
-                showToast('已從收藏中移除', 'info');
-            } else {
-                favorites.add(id);
-                showToast('已加入我的收藏！', 'success');
-            }
-            saveFavorites();
-            renderCards();
-            updateStats();
-
-            if (currentActiveModalPlatform && currentActiveModalPlatform.id === id) {
-                updateModalFavState();
-            }
-        };
 
         // Open Detail Modal
         window.openDetailModal = function(id) {
@@ -1118,8 +1273,8 @@
             document.getElementById('modalCategoryBadge').textContent = getCategoryLabel(platform.category);
             document.getElementById('modalLaunchBtn').href = platform.url;
 
-            document.getElementById('modalIcon').className = `fa-solid ${platform.icon}`;
-            document.getElementById('modalHeader').className = `p-6 bg-gradient-to-r ${platform.gradient} text-white relative`;
+            document.getElementById('modalIcon').className = `fa-solid ${platform.icon || 'fa-globe'}`;
+            document.getElementById('modalHeader').className = `p-6 bg-gradient-to-r ${platform.gradient || 'from-sky-500 to-indigo-600'} text-white relative`;
 
             const tagsContainer = document.getElementById('modalTags');
             tagsContainer.innerHTML = platform.tags.map(t => `<span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">#${t}</span>`).join('');
@@ -1155,19 +1310,14 @@
             document.getElementById('statTotalCount').textContent = learningPlatforms.length;
             document.getElementById('statFavCount').textContent = favorites.size;
 
-            const categoryLabels = {
-                'all': '全部資源',
-                'core': '綜合與學科學習',
-                'chinese': '國語文與閱讀認證',
-                'english': '英語聽說讀寫',
-                'gamified': '遊戲化與互動討論',
-                'coding': '廣達Qblock/資訊程式',
-                'ebook': '電子書與圖書館',
-                'account': '教育帳號申請',
-                'practice': '學生練功區',
-                'fav': '❤️ 我的收藏'
-            };
-            document.getElementById('statCategoryLabel').textContent = categoryLabels[currentCategory] || '全部資源';
+            let catLabel = '全部資源';
+            if (currentCategory === 'fav') {
+                catLabel = '❤️ 我的收藏';
+            } else if (categoriesConfig[currentCategory]) {
+                catLabel = categoriesConfig[currentCategory].name;
+            }
+
+            document.getElementById('statCategoryLabel').textContent = catLabel;
         }
 
         // Show Toast Feedback
@@ -1194,6 +1344,17 @@
 
         // Event Listeners Setup
         function setupEventListeners() {
+            // Manage categories button
+            const manageCategoriesBtn = document.getElementById('manageCategoriesBtn');
+            if (manageCategoriesBtn) {
+                manageCategoriesBtn.addEventListener('click', openCategoryManagerModal);
+            }
+
+            document.getElementById('closeCategoryModal').addEventListener('click', closeCategoryManagerModal);
+            document.getElementById('closeCategoryModalBtn').addEventListener('click', closeCategoryManagerModal);
+            document.getElementById('saveCategoryNamesBtn').addEventListener('click', saveCategoryNames);
+            document.getElementById('resetCategoryNamesBtn').addEventListener('click', resetCategoryNames);
+
             // Restore default platforms button
             document.getElementById('restoreDefaultsBtn').addEventListener('click', () => {
                 restoreDefaultPlatforms();
@@ -1206,6 +1367,7 @@
                     isAdmin = false;
                     document.getElementById('adminLockIcon').className = 'fa-solid fa-lock text-amber-500';
                     document.getElementById('adminBtnText').textContent = '管理解鎖';
+                    if (manageCategoriesBtn) manageCategoriesBtn.classList.add('hidden');
                     renderCards();
                     showToast('已鎖定管理者權限', 'info');
                 } else {
@@ -1225,6 +1387,7 @@
                     isAdmin = true;
                     document.getElementById('adminLockIcon').className = 'fa-solid fa-lock-open text-emerald-400';
                     document.getElementById('adminBtnText').textContent = '已解鎖權限';
+                    if (manageCategoriesBtn) manageCategoriesBtn.classList.remove('hidden');
                     closeAdminModal();
                     showToast('管理者身分驗證成功！', 'success');
                     renderCards();
@@ -1242,20 +1405,13 @@
             document.getElementById('cancelDeleteBtn').addEventListener('click', closeDeleteConfirmModal);
             document.getElementById('confirmDeleteBtn').addEventListener('click', executeDelete);
 
-            // ... existing category and search listeners ...
+            // Category tabs click
             document.getElementById('categoryTabs').addEventListener('click', (e) => {
                 const btn = e.target.closest('.cat-btn');
                 if (!btn) return;
 
-                document.querySelectorAll('.cat-btn').forEach(b => {
-                    b.classList.remove('active', 'bg-sky-600', 'text-white', 'shadow-md');
-                    b.classList.add('text-slate-600', 'dark:text-slate-300');
-                });
-
-                btn.classList.add('active', 'bg-sky-600', 'text-white', 'shadow-md');
-                btn.classList.remove('text-slate-600', 'dark:text-slate-300');
-
                 currentCategory = btn.dataset.cat;
+                renderCategoryTabs();
                 renderCards();
                 updateStats();
             });
@@ -1277,24 +1433,26 @@
                 renderCards();
             }
 
-            searchInput.addEventListener('input', handleSearchInput);
-            mobileSearchInput.addEventListener('input', handleSearchInput);
+            if (searchInput) searchInput.addEventListener('input', handleSearchInput);
+            if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
 
-            clearSearchBtn.addEventListener('click', () => {
-                searchQuery = '';
-                searchInput.value = '';
-                mobileSearchInput.value = '';
-                clearSearchBtn.classList.add('hidden');
-                renderCards();
-            });
+            if (clearSearchBtn) {
+                clearSearchBtn.addEventListener('click', () => {
+                    searchQuery = '';
+                    if (searchInput) searchInput.value = '';
+                    if (mobileSearchInput) mobileSearchInput.value = '';
+                    clearSearchBtn.classList.add('hidden');
+                    renderCards();
+                });
+            }
 
             document.querySelectorAll('.tag-pill').forEach(pill => {
                 pill.addEventListener('click', () => {
                     const tag = pill.dataset.tag;
                     searchQuery = tag;
-                    searchInput.value = tag;
-                    mobileSearchInput.value = tag;
-                    clearSearchBtn.classList.remove('hidden');
+                    if (searchInput) searchInput.value = tag;
+                    if (mobileSearchInput) mobileSearchInput.value = tag;
+                    if (clearSearchBtn) clearSearchBtn.classList.remove('hidden');
                     renderCards();
                 });
             });
@@ -1302,17 +1460,11 @@
             document.getElementById('resetFilterBtn').addEventListener('click', () => {
                 searchQuery = '';
                 currentCategory = 'all';
-                searchInput.value = '';
-                mobileSearchInput.value = '';
-                clearSearchBtn.classList.add('hidden');
+                if (searchInput) searchInput.value = '';
+                if (mobileSearchInput) mobileSearchInput.value = '';
+                if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
 
-                document.querySelectorAll('.cat-btn').forEach(b => {
-                    b.classList.remove('active', 'bg-sky-600', 'text-white');
-                    if (b.dataset.cat === 'all') {
-                        b.classList.add('active', 'bg-sky-600', 'text-white');
-                    }
-                });
-
+                renderCategoryTabs();
                 renderCards();
                 updateStats();
             });
@@ -1335,8 +1487,14 @@
 
             const addModal = document.getElementById('addModal');
             document.getElementById('addCustomBtn').addEventListener('click', () => {
+                document.getElementById('editPlatformId').value = '';
+                document.getElementById('addPlatformForm').reset();
+                document.getElementById('addModalTitle').innerHTML = `<i class="fa-solid fa-link text-sky-500"></i> 新增自訂學習網站`;
+                document.getElementById('savePlatformBtn').textContent = '加入平台';
+                document.getElementById('savePlatformBtn').className = 'px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-500/20';
                 addModal.classList.remove('hidden');
             });
+
             document.getElementById('closeAddModal').addEventListener('click', () => {
                 addModal.classList.add('hidden');
             });
@@ -1346,45 +1504,63 @@
 
             document.getElementById('addPlatformForm').addEventListener('submit', (e) => {
                 e.preventDefault();
+                const editId = document.getElementById('editPlatformId').value;
                 const name = document.getElementById('customName').value.trim();
                 const url = document.getElementById('customUrl').value.trim();
                 const category = document.getElementById('customCategory').value;
+                const target = document.getElementById('customTarget').value.trim();
                 const desc = document.getElementById('customDesc').value.trim() || '使用者自訂學習網站資源。';
 
                 if (!name || !url) return;
 
-                const newPlatform = {
-                    id: 'custom_' + Date.now(),
-                    name: name,
-                    category: category,
-                    url: url,
-                    icon: 'fa-globe',
-                    gradient: 'from-sky-500 to-indigo-600',
-                    bgLight: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300',
-                    tags: ['自訂連結', '常用資源'],
-                    desc: desc,
-                    officialBadge: '個人新增',
-                    target: '自主學習資源'
-                };
+                if (editId) {
+                    // Update existing platform
+                    const pIndex = platformsData.findIndex(p => p.id === editId);
+                    if (pIndex !== -1) {
+                        platformsData[pIndex].name = name;
+                        platformsData[pIndex].url = url;
+                        platformsData[pIndex].category = category;
+                        platformsData[pIndex].target = target || platformsData[pIndex].target;
+                        platformsData[pIndex].desc = desc;
+                        showToast(`已更新「${name}」平台資訊！`, 'success');
+                    }
+                } else {
+                    // Create new custom platform
+                    const newPlatform = {
+                        id: 'custom_' + Date.now(),
+                        name: name,
+                        category: category,
+                        url: url,
+                        icon: 'fa-globe',
+                        gradient: 'from-sky-500 to-indigo-600',
+                        bgLight: 'bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300',
+                        tags: ['自訂連結', '常用資源'],
+                        desc: desc,
+                        officialBadge: '個人新增',
+                        target: target || '自主學習資源'
+                    };
 
-                platformsData.unshift(newPlatform);
+                    platformsData.unshift(newPlatform);
+                    showToast('已成功新增自訂連結！', 'success');
+                }
+
                 savePlatforms();
                 renderCards();
                 updateStats();
 
                 addModal.classList.add('hidden');
                 document.getElementById('addPlatformForm').reset();
-                showToast('已成功新增自訂連結！', 'success');
             });
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== mobileSearchInput) {
                     e.preventDefault();
-                    searchInput.focus();
+                    if (searchInput) searchInput.focus();
                 } else if (e.key === 'Escape') {
                     closeDetailModal();
                     closeAdminModal();
                     closeDeleteConfirmModal();
+                    closeCategoryManagerModal();
                     addModal.classList.add('hidden');
                 }
             });
