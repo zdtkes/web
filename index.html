@@ -267,6 +267,9 @@
                 <button data-cat="account" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
                     <i class="fa-solid fa-user-shield mr-1.5 text-indigo-500"></i>教育帳號申請
                 </button>
+                <button data-cat="practice" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
+                    <i class="fa-solid fa-keyboard mr-1.5 text-emerald-500"></i>學生練功區
+                </button>
                 <button data-cat="fav" class="cat-btn px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 whitespace-nowrap transition-all flex-shrink-0">
                     <i class="fa-solid fa-heart mr-1.5 text-rose-500"></i>❤️ 我的收藏
                 </button>
@@ -399,6 +402,7 @@
                         <option value="coding">廣達Qblock/資訊程式</option>
                         <option value="ebook">電子書與圖書館</option>
                         <option value="account">教育帳號申請</option>
+                        <option value="practice">學生練功區</option>
                     </select>
                 </div>
                 <div>
@@ -694,7 +698,7 @@
                 id: 'knsh_ebook',
                 name: '康軒網頁版電子書',
                 category: 'ebook',
-                url: 'https://webetextbook.knsh.com.tw/',
+                url: 'https://digitalmaster.knsh.com.tw/',
                 icon: 'fa-book-atlas',
                 gradient: 'from-orange-500 to-red-500',
                 bgLight: 'bg-orange-50 text-orange-700 dark:bg-orange-950/50 dark:text-orange-300',
@@ -728,6 +732,45 @@
                 desc: '翰林出版行動大師網頁版電子書，提供國小各科課本、習作與教學媒體，免安裝即可線上瀏覽與課前自主預習。',
                 officialBadge: '翰林出版',
                 target: '國小教科書 / 自主預習與複習'
+            },
+            {
+                id: 'hlc_typing',
+                name: '花蓮縣打字練習網',
+                category: 'practice',
+                url: 'https://contest.hlc.edu.tw/typing/index.asp',
+                icon: 'fa-keyboard',
+                gradient: 'from-teal-500 to-cyan-600',
+                bgLight: 'bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-300',
+                tags: ['花蓮縣', '打字練習', '英打中打', '資訊競賽'],
+                desc: '花蓮縣教育處打造之極受歡迎打字練習平台，提供豐富英打與中打關卡、檢定測驗與全國名次排行，鍛鍊打字速度與正確率。',
+                officialBadge: '花蓮縣教育處',
+                target: '中英文打字練習 / 資訊競賽特訓'
+            },
+            {
+                id: 'typing_3min',
+                name: '3分鐘中文打字大進擊',
+                category: 'practice',
+                url: 'https://worldofkeyboards.com/elemschwords',
+                icon: 'fa-bolt',
+                gradient: 'from-amber-500 to-rose-500',
+                bgLight: 'bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300',
+                tags: ['中文打字', '限時挑戰', '國小常用', '打字速度'],
+                desc: '針對國小常見字詞設計的 3 分鐘中文打字限時挑戰網站，幫助學生訓練手指肌肉記憶、認識國字與倍增中打速度。',
+                officialBadge: '線上特訓',
+                target: '國小學童 / 3分鐘限時中打練習'
+            },
+            {
+                id: 'kh_tech',
+                name: '高雄科技一把罩',
+                category: 'practice',
+                url: 'https://class.kh.edu.tw/9755/link/view/18',
+                icon: 'fa-laptop-code',
+                gradient: 'from-indigo-500 to-purple-600',
+                bgLight: 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300',
+                tags: ['高雄市', '科技一把罩', '資訊素養', '數位學習'],
+                desc: '高雄市教育局推動之科技學習與資訊素養線上練功庫，提供豐富打字測驗、資訊素養挑戰與數位科技知識學習資源。',
+                officialBadge: '高雄市教育局',
+                target: '資訊素養 / 科技練功與測驗'
             }
         ];
 
@@ -891,7 +934,8 @@
                 'gamified': '遊戲化互動',
                 'coding': '廣達Qblock/程式',
                 'ebook': '電子書',
-                'account': '教育帳號申請'
+                'account': '教育帳號申請',
+                'practice': '學生練功區'
             };
             return map[catKey] || '自主學習';
         }
@@ -974,6 +1018,7 @@
                 'coding': '廣達Qblock/資訊程式',
                 'ebook': '電子書與圖書館',
                 'account': '教育帳號申請',
+                'practice': '學生練功區',
                 'fav': '❤️ 我的收藏'
             };
             document.getElementById('statCategoryLabel').textContent = categoryLabels[currentCategory] || '全部資源';
